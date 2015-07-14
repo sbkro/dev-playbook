@@ -1,0 +1,38 @@
+---
+
+- file: path={{ work_dir }} state=absent
+
+- git: repo=https://github.com/yascentur/Ricty.git dest={{ work_dir }}
+
+- homebrew: name={{ item }} state=latest upgrade_all=yes
+  with_items:
+    - fontforge
+
+- get_url: url=http://levien.com/type/myfonts/Inconsolata.otf
+           dest={{ work_dir }}
+
+- get_url: url=http://osdn.jp/frs/redir.php?m=jaist&f=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-{{ migu_version }}.zip
+           dest={{ work_dir }}
+
+- shell: 'tar -xzf {{ work_dir }}/migu-1m-{{ migu_version }}.zip -C {{ work_dir }}'
+
+- shell: 'mv {{ work_dir }}/migu-1m-{{ migu_version }}/*.ttf {{ work_dir }}'
+
+- shell: '{{ work_dir }}/ricty_generator.sh auto'
+  environment:
+      PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+  args:
+    chdir: '{{ work_dir }}'
+
+- shell: 'cp {{ work_dir }}/{{ item }} {{ dest_dir }}'
+  args:
+    creates: '{{ work_dir }}/{{ item }}'
+  with_items:
+    - Ricty-Regular.ttf
+    - Ricty-Bold.ttf
+    - RictyDiscord-Regular.ttf
+    - RictyDiscord-Bold.ttf
+
+- shell: fc-cache -vf
+  environment:
+      PATH: '/usr/local/bin:{{ ansible_env.PATH }}'

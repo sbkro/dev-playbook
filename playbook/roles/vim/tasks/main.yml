@@ -1,0 +1,43 @@
+---
+
+- get_url:
+    url: 'https://github.com/splhack/macvim-kaoriya/releases/download/{{ target_version }}/macvim-kaoriya-{{ target_version }}.dmg'
+    dest: '{{ download_dir }}'
+
+- shell: 'hdiutil attach macvim-kaoriya-{{ target_version }}.dmg'
+  args:
+    chdir: '{{ download_dir }}'
+
+- shell: 'cp -R /Volumes/MacVim-KaoriYa/MacVim.app /Applications'
+  args:
+    chdir: '{{ download_dir }}'
+    creates: /Applications/MacVim.app
+
+- shell: 'hdiutil detach /Volumes/MacVim-KaoriYa'
+
+- file: path={{ item }} state=directory
+  with_items:
+    - '{{ vim_home }}'
+    - '{{ vim_bundle_dir }}'
+    - '{{ vim_colors_dir }}'
+
+- git: repo={{ item.url }} dest={{ item.dest }}
+  with_items:
+    - { url: 'https://github.com/sbkro/dotfiles.git',
+        dest: '~/.dotfiles' }
+    - { url: 'https://github.com/Shougo/neobundle.vim',
+        dest: '{{ vim_bundle_dir }}/neobundle.vim' }
+    - { url: 'https://github.com/altercation/vim-colors-solarized.git',
+        dest: '{{ vim_colors_dir }}/solarized' }
+
+- file: src=~/.dotfiles/{{ item.path }} dest={{ item.dest }} state=link
+  with_items:
+    - { path: vim/_vimrc, dest: ~/.vimrc }
+    - { path: vim/_gvimrc, dest: ~/.gvimrc }
+    - { path: vim/userautoload, dest: ~/.vim/userautoload }
+
+- shell: 'mv {{ vim_colors_dir }}/solarized/colors/solarized.vim {{ vim_colors_dir }}'
+  args:
+    creates: '{{ vim_colors_dir }}/solarized.vim'
+
+- shell: 'rm -fr {{ vim_colors_dir }}/solarized'

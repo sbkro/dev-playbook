@@ -1,0 +1,8 @@
+---
+target_version: '20150707'
+download_dir: '~/Downloads'
+
+vim_home: '~/.vim'
+vim_bundle_dir: '{{ vim_home }}/bundle'
+vim_colors_dir: '{{ vim_home }}/colors'
+vim_userautoload_dir: '{{ vim_home }}/userautoload'

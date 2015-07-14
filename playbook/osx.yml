@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  roles:
+    - homebrew
+    - shell
+    - ricty
+    - python
+    - vim
+    - vagrant

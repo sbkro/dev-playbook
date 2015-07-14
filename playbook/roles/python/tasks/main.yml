@@ -1,0 +1,14 @@
+---
+
+- homebrew: name=python state=latest upgrade_all=yes install_options=framework
+
+- shell: 'easy_install pip'
+  sudo: yes
+
+- pip: name={{ item }}
+  with_items:
+    - virtualenv
+    - virtualenvwrapper
+  environment:
+    PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+  sudo: yes
