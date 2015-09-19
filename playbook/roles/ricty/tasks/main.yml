@@ -26,7 +26,7 @@
 
 - shell: 'cp {{ work_dir }}/{{ item }} {{ ricty_install_dir }}'
   args:
-    creates: '{{ work_dir }}/{{ item }}'
+    creates: '{{ ricty_install_dir }}/{{ item }}'
   with_items:
     - Ricty-Regular.ttf
     - Ricty-Bold.ttf
