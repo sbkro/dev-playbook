@@ -19,7 +19,8 @@ $ ansible-playbook -i hosts osx.yml --connection=local
 ```
 
 # Environments
-* Host: OSX 10.9 (local install)
+* Host: OSX 10.9  (local install)
+* Host: OSX 10.10 (local install)
 * Host: OSX 10.9, Guest: OSX 10.9 (remote install)
 
 
