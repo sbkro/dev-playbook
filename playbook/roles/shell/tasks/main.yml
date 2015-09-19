@@ -29,5 +29,6 @@
 - file: src=~/.dotfiles/{{ item.path }} dest={{ item.dest }} state=link
   with_items:
     - { path: zsh/_zshrc, dest: ~/.zshrc }
+    - { path: zsh/sbkro, dest: ~/.oh-my-zsh/custom/plugins/sbkro }
     - { path: tmux/_tmux.conf, dest: ~/.tmux.conf }
     - { path: readline/_inputrc, dest: ~/.inputrc }
