@@ -2,6 +2,7 @@
 
 - shell: which /usr/local/bin/brew
   register: which_result
+  ignore_errors: yes
 
 - shell: echo "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   when: which_result.rc == 1
