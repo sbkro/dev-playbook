@@ -24,7 +24,7 @@
   args:
     chdir: '{{ work_dir }}'
 
-- shell: 'cp {{ work_dir }}/{{ item }} {{ dest_dir }}'
+- shell: 'cp {{ work_dir }}/{{ item }} {{ ricty_install_dir }}'
   args:
     creates: '{{ work_dir }}/{{ item }}'
   with_items:

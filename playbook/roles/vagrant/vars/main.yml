@@ -1,3 +1,2 @@
 ---
-target_version: '1.7.3'
-download_dir: '~/Downloads'
+vagrant_version: '1.7.3'

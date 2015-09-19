@@ -1,4 +1,3 @@
 ---
-work_dir: '~/ricty'
-dest_dir: '~/Library/Fonts'
+work_dir: '{{ user_downloads_dir }}/ricty'
 migu_version: '20130617'

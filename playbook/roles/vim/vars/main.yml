@@ -1,6 +1,5 @@
 ---
-target_version: '20150707'
-download_dir: '~/Downloads'
+macvim_version: '20150707'
 
 vim_home: '~/.vim'
 vim_bundle_dir: '{{ vim_home }}/bundle'

@@ -1,12 +1,12 @@
 ---
 
 - get_url:
-    url: 'https://dl.bintray.com/mitchellh/vagrant/vagrant_{{ target_version }}.dmg'
-    dest: '{{ download_dir }}'
+    url: 'https://dl.bintray.com/mitchellh/vagrant/vagrant_{{ vagrant_version }}.dmg'
+    dest: '{{ user_downloads_dir }}'
 
-- shell: 'hdiutil attach vagrant_{{ target_version }}.dmg'
+- shell: 'hdiutil attach vagrant_{{ vagrant_version }}.dmg'
   args:
-    chdir: '{{ download_dir }}'
+    chdir: '{{ user_downloads_dir }}'
 
 - shell: 'installer -pkg Vagrant.pkg -target /'
   args:

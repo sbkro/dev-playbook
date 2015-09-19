@@ -1,19 +1,19 @@
 ---
-# TODO: local setting files
+# TODO: install color theme
 
 - get_url:
     url=https://iterm2.com/downloads/stable/iTerm2-{{ item2_version }}.zip
-    dest={{ download_dir }}
+    dest={{ user_downloads_dir }}
 
-- shell: 'unzip {{ download_dir }}/iTerm2-{{ item2_version }}.zip'
+- shell: 'unzip {{ user_downloads_dir }}/iTerm2-{{ item2_version }}.zip'
   args:
-    chdir: '{{ download_dir }}'
-    creates: '{{ download_dir }}/iTerm.app'
+    chdir: '{{ user_downloads_dir }}'
+    creates: '{{ user_downloads_dir }}/iTerm.app'
 
-- shell: 'mv {{ download_dir }}/iTerm.app {{ application_dir }}'
+- shell: 'mv {{ user_downloads_dir }}/iTerm.app {{ root_applications_dir }}'
   args:
-    chdir: '{{ download_dir }}'
-    creates: '{{ application_dir }}/iTerm.app'
+    chdir: '{{ user_downloads_dir }}'
+    creates: '{{ root_applications_dir }}/iTerm.app'
 
 - homebrew: name={{ item }} state=latest upgrade_all=yes
   with_items:

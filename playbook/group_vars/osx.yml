@@ -1,0 +1,8 @@
+---
+root_applications_dir: '/Applications'
+
+user_applications_dir: '~/Applications'
+user_downloads_dir: '~/Downloads'
+user_library_dir: '~/Library'
+
+ricty_install_dir: '{{ user_library_dir }}/Fonts'

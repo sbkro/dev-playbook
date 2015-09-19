@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: osx
   roles:
     - homebrew
     - shell

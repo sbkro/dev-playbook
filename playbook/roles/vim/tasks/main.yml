@@ -1,16 +1,16 @@
 ---
 
 - get_url:
-    url: 'https://github.com/splhack/macvim-kaoriya/releases/download/{{ target_version }}/macvim-kaoriya-{{ target_version }}.dmg'
-    dest: '{{ download_dir }}'
+    url: 'https://github.com/splhack/macvim-kaoriya/releases/download/{{ macvim_version }}/macvim-kaoriya-{{ macvim_version }}.dmg'
+    dest: '{{ user_downloads_dir }}'
 
-- shell: 'hdiutil attach macvim-kaoriya-{{ target_version }}.dmg'
+- shell: 'hdiutil attach macvim-kaoriya-{{ macvim_version }}.dmg'
   args:
-    chdir: '{{ download_dir }}'
+    chdir: '{{ user_downloads_dir }}'
 
-- shell: 'cp -R /Volumes/MacVim-KaoriYa/MacVim.app /Applications'
+- shell: 'cp -R /Volumes/MacVim-KaoriYa/MacVim.app {{ root_applications_dir }}'
   args:
-    chdir: '{{ download_dir }}'
+    chdir: '{{ user_downloads_dir }}'
     creates: /Applications/MacVim.app
 
 - shell: 'hdiutil detach /Volumes/MacVim-KaoriYa'
