@@ -31,8 +31,3 @@
     - { path: zsh/_zshrc, dest: ~/.zshrc }
     - { path: tmux/_tmux.conf, dest: ~/.tmux.conf }
     - { path: readline/_inputrc, dest: ~/.inputrc }
-
-- homebrew: name={{ item }} state=latest upgrade_all=yes
-  with_items:
-    - nkf
-    - tree
