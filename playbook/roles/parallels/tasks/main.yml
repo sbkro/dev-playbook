@@ -1,0 +1,19 @@
+---
+
+- shell: find . -name 'ParallelsDesktop-*.dmg'
+  register: dmg_path
+  args:
+    chdir: '{{ user_downloads_dir }}'
+
+- get_url:
+    url: 'http://www.parallels.com/directdownload/pd10'
+    dest: '{{ user_downloads_dir }}'
+  when: dmg_path.stdout == ""
+
+- shell: which /usr/local/bin/vagrant
+  register: vagrant_path
+
+- shell: vagrant plugin install vagrant-parallels
+  environment:
+    PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+  when: vagrant_path != ""
