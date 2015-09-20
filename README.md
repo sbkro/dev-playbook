@@ -17,7 +17,7 @@ $ git clone https://github.com/sbkro/dev-playbook.git
 $ cd dev-playbook/playbook
 $ vi hosts
 # edit host name
-$ ansible-playbook -i hosts osx.yml --connection=local
+$ ansible-playbook -i hosts osx.yml --connection=local -K
 ```
 
 If you run the ansible playbook to OSX 10.11, you have disable "rootless" temporarily.
@@ -44,5 +44,5 @@ $ sudo reboot
 
 
 # TODO
-* Add enviroment test. (serverspec)
+* Add infrastructure test. (serverspec)
 * Linux support.
