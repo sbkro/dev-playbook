@@ -21,18 +21,26 @@ $ ansible-playbook -i hosts osx.yml --connection=local -K
 ```
 
 If you run the ansible playbook to OSX 10.11, you have disable "rootless" temporarily.
-Please run following command before run it.
+
+Beta version is as follow.
 
 ```sh
+# disable rootless.
 $ sudo nvram boot-args="rootless=0"
 $ sudo reboot
+
+# enable rootless.
+$ sudo nvram boot-args="rootless=1"
 ```
 
-After run the ansible playbook, return the original using following command.
+GM Candidate is as follows. This command must execute in terminal of recovery mode.
 
 ```sh
-$ sudo nvram boot-args="rootless=1"
-$ sudo reboot
+# disalble rootless.
+$ csrutil disable
+
+# enable rootless.
+$ csrutil enable
 ```
 
 
