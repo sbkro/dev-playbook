@@ -33,7 +33,7 @@ $ sudo reboot
 $ sudo nvram boot-args="rootless=1"
 ```
 
-GM Candidate is as follows. This command must execute in terminal of recovery mode.
+GM Candidate and Official version are as follows. This command must run in terminal of recovery mode.
 
 ```sh
 # disalble rootless.
