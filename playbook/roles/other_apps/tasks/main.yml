@@ -2,5 +2,6 @@
 
 - homebrew: name={{ item }} state=latest upgrade_all=yes
   with_items:
+    - git
     - nkf
     - tree
