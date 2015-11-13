@@ -1,19 +1,12 @@
 ---
 
-- get_url:
-    url: 'https://github.com/splhack/macvim-kaoriya/releases/download/{{ macvim_version }}/macvim-kaoriya-{{ macvim_version }}.dmg'
-    dest: '{{ user_downloads_dir }}'
+- homebrew_tap: tap=caskroom/versions state=present
 
-- shell: 'hdiutil attach macvim-kaoriya-{{ macvim_version }}.dmg'
-  args:
-    chdir: '{{ user_downloads_dir }}'
-
-- shell: 'cp -R /Volumes/MacVim-KaoriYa/MacVim.app {{ root_applications_dir }}'
-  args:
-    chdir: '{{ user_downloads_dir }}'
-    creates: /Applications/MacVim.app
-
-- shell: 'hdiutil detach /Volumes/MacVim-KaoriYa'
+- homebrew_cask: name={{ item }} state=present
+  with_items:
+    - macvim-kaoriya
+  environment:
+    HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
 
 - file: path={{ item }} state=directory
   with_items:

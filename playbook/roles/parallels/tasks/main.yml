@@ -1,14 +1,10 @@
 ---
 
-- shell: find . -name 'ParallelsDesktop-*.dmg'
-  register: dmg_path
-  args:
-    chdir: '{{ user_downloads_dir }}'
+- homebrew_tap: tap=caskroom/versions state=present
 
-- get_url:
-    url: 'http://www.parallels.com/directdownload/pd10'
-    dest: '{{ user_downloads_dir }}'
-  when: dmg_path.stdout == ""
+- homebrew_cask: name=parallels10 state=present
+  environment:
+    HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
 
 - shell: which /usr/local/bin/vagrant
   register: vagrant_path

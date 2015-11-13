@@ -8,7 +8,11 @@
 - pip: name={{ item }}
   with_items:
     - virtualenv
-    - virtualenvwrapper
+  environment:
+    PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+  sudo: yes
+
+- pip: name=virtualenvwrapper extra_args='--ignore-installed six'
   environment:
     PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
   sudo: yes
