@@ -2,14 +2,13 @@
 
 - homebrew_tap: tap=caskroom/versions state=present
 
-- homebrew_cask: name=parallels10 state=present
+- homebrew_cask: name={{ item }} state=present
+  with_items:
+    - parallels10
+    - vagrant
   environment:
     HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
-
-- shell: which /usr/local/bin/vagrant
-  register: vagrant_path
 
 - shell: vagrant plugin install vagrant-parallels
   environment:
     PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
-  when: vagrant_path != ""

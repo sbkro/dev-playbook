@@ -1,5 +1,0 @@
----
-
-- homebrew_cask: name=vagrant state=present
-  environment:
-    HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
