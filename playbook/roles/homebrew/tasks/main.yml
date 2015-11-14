@@ -8,3 +8,5 @@
   when: which_result.rc == 1
 
 - shell: /usr/local/bin/brew update
+
+- shell: /usr/local/bin/brew install caskroom/cask/brew-cask
