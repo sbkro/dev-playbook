@@ -6,5 +6,6 @@
     - alfred
     - adobe-photoshop-lightroom
     - karabiner
+    - qlmarkdown
   environment:
     HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
