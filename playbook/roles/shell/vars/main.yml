@@ -1,0 +1,2 @@
+---
+work_dir: '{{ user_downloads_dir }}/shell'
