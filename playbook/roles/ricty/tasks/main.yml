@@ -2,11 +2,8 @@
 
 - stat: path={{ ricty_install_dir }}/{{ item }}
   with_items:
-    - Ricty-Regular.ttf
-    - Ricty-Bold.ttf
-    - RictyDiscord-Regular.ttf
-    - RictyDiscord-Bold.ttf
-  register: is_fonts
+    - '{{ target_fonts }}'
+  register: ricty_fonts
 
 - set_fact:
     is_install: False
@@ -15,7 +12,7 @@
     is_install: True
   when: not {{ item.stat.exists }}
   with_items:
-    - '{{ is_fonts.results }}'
+    - '{{ ricty_fonts.results }}'
 
 - include: install.yml
   when: is_install == True

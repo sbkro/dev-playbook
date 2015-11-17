@@ -24,10 +24,7 @@
   args:
     creates: '{{ ricty_install_dir }}/{{ item }}'
   with_items:
-    - Ricty-Regular.ttf
-    - Ricty-Bold.ttf
-    - RictyDiscord-Regular.ttf
-    - RictyDiscord-Bold.ttf
+    - '{{ target_fonts }}'
 
 - homebrew: name=fontforge state=latest upgrade_all=yes
 
