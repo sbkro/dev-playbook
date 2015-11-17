@@ -1,6 +1,4 @@
 ---
-# TODO: install color theme
-
 - homebrew_cask: name=iterm2 state=present
   environment:
     HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
@@ -15,6 +13,7 @@
   with_items:
     - { url: 'https://github.com/robbyrussell/oh-my-zsh.git', dest: '~/.oh-my-zsh' }
     - { url: 'https://github.com/sbkro/dotfiles.git', dest: '~/.dotfiles' }
+    - { url: 'https://github.com/altercation/solarized.git', dest: '{{ work_dir }}'}
 
 - file: src=~/.dotfiles/{{ item.path }} dest={{ item.dest }} state=link
   with_items:
