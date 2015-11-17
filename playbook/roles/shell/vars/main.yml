@@ -1,2 +1,2 @@
 ---
-item2_version: '2_1_1'
+work_dir: '{{ user_downloads_dir }}/shell'

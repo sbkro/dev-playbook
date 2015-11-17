@@ -1,0 +1,11 @@
+---
+
+- homebrew_cask: name={{ item }} state=present
+  with_items:
+    - dropbox
+    - alfred
+    - adobe-photoshop-lightroom
+    - karabiner
+    - qlmarkdown
+  environment:
+    HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'

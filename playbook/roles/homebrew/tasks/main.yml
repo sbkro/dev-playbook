@@ -1,10 +1,21 @@
 ---
 
-- shell: which /usr/local/bin/brew
-  register: which_result
-  ignore_errors: yes
+- stat: path=/usr/local/bin/brew
+  register: brew_command
 
 - shell: echo "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  when: which_result.rc == 1
+  when: not brew_command.stat.exists
 
-- shell: /usr/local/bin/brew update
+- shell: brew doctor
+  environment:
+    PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+
+- homebrew: update_homebrew=yes upgrade_all=yes
+
+- homebrew_tap: tap=caskroom/cask state=present
+
+- homebrew: name=brew-cask
+
+- shell: brew cask doctor
+  environment:
+    PATH: '/usr/local/bin:{{ ansible_env.PATH }}'

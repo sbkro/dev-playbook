@@ -1,19 +1,7 @@
 ---
-# TODO: install color theme
-
-- get_url:
-    url=https://iterm2.com/downloads/stable/iTerm2-{{ item2_version }}.zip
-    dest={{ user_downloads_dir }}
-
-- shell: 'unzip {{ user_downloads_dir }}/iTerm2-{{ item2_version }}.zip'
-  args:
-    chdir: '{{ user_downloads_dir }}'
-    creates: '{{ user_downloads_dir }}/iTerm.app'
-
-- shell: 'mv {{ user_downloads_dir }}/iTerm.app {{ root_applications_dir }}'
-  args:
-    chdir: '{{ user_downloads_dir }}'
-    creates: '{{ root_applications_dir }}/iTerm.app'
+- homebrew_cask: name=iterm2 state=present
+  environment:
+    HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
 
 - homebrew: name={{ item }} state=latest upgrade_all=yes
   with_items:
@@ -25,6 +13,7 @@
   with_items:
     - { url: 'https://github.com/robbyrussell/oh-my-zsh.git', dest: '~/.oh-my-zsh' }
     - { url: 'https://github.com/sbkro/dotfiles.git', dest: '~/.dotfiles' }
+    - { url: 'https://github.com/altercation/solarized.git', dest: '{{ work_dir }}'}
 
 - file: src=~/.dotfiles/{{ item.path }} dest={{ item.dest }} state=link
   with_items:
