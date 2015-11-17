@@ -6,3 +6,5 @@ user_downloads_dir: '~/Downloads'
 user_library_dir: '~/Library'
 
 ricty_install_dir: '{{ user_library_dir }}/Fonts'
+
+homebrew_cask_opts: '--appdir={{ root_applications_dir }} --caskroom=/usr/local/Caskroom'
