@@ -1,38 +1,18 @@
 ---
 
-- file: path={{ work_dir }} state=absent
-
-- git: repo=https://github.com/yascentur/Ricty.git dest={{ work_dir }}
-
-- homebrew: name={{ item }} state=latest upgrade_all=yes
+- stat: path={{ ricty_install_dir }}/{{ item }}
   with_items:
-    - fontforge
+    - '{{ target_fonts }}'
+  register: ricty_fonts
 
-- get_url: url=http://levien.com/type/myfonts/Inconsolata.otf
-           dest={{ work_dir }}
+- set_fact:
+    is_install: False
 
-- get_url: url=http://osdn.jp/frs/redir.php?m=jaist&f=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-{{ migu_version }}.zip
-           dest={{ work_dir }}
-
-- shell: 'tar -xzf {{ work_dir }}/migu-1m-{{ migu_version }}.zip -C {{ work_dir }}'
-
-- shell: 'mv {{ work_dir }}/migu-1m-{{ migu_version }}/*.ttf {{ work_dir }}'
-
-- shell: '{{ work_dir }}/ricty_generator.sh auto'
-  environment:
-      PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
-  args:
-    chdir: '{{ work_dir }}'
-
-- shell: 'cp {{ work_dir }}/{{ item }} {{ ricty_install_dir }}'
-  args:
-    creates: '{{ ricty_install_dir }}/{{ item }}'
+- set_fact:
+    is_install: True
+  when: not {{ item.stat.exists }}
   with_items:
-    - Ricty-Regular.ttf
-    - Ricty-Bold.ttf
-    - RictyDiscord-Regular.ttf
-    - RictyDiscord-Bold.ttf
+    - '{{ ricty_fonts.results }}'
 
-- shell: fc-cache -vf
-  environment:
-      PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+- include: install.yml
+  when: is_install == True

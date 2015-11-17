@@ -1,3 +1,8 @@
 ---
 work_dir: '{{ user_downloads_dir }}/ricty'
 migu_version: '20130617'
+target_fonts:
+  - Ricty-Regular.ttf
+  - Ricty-Bold.ttf
+  - RictyDiscord-Regular.ttf
+  - RictyDiscord-Bold.ttf
