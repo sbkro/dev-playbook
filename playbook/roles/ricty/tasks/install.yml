@@ -1,30 +1,13 @@
 ---
-- file: path={{ work_dir }} state=absent
 
-- git: repo=https://github.com/yascentur/Ricty.git dest={{ work_dir }}
+- homebrew_tap:
+  name: sanemat/font
 
-- get_url: url={{ item }} dest={{ work_dir }}
-  with_items:
-    - http://levien.com/type/myfonts/Inconsolata.otf
-    - http://osdn.jp/frs/redir.php?m=jaist&f=%2Fmix-mplus-ipa%2F59022%2Fmigu-1m-{{ migu_version }}.zip
+- homebrew: name=ricty install_options=with-powerlie
 
-- unarchive: src='{{ work_dir }}/migu-1m-{{ migu_version }}.zip' dest={{ work_dir }}
-             copy=no
-
-- shell: 'mv {{ work_dir }}/migu-1m-{{ migu_version }}/*.ttf {{ work_dir }}'
-
-- shell: '{{ work_dir }}/ricty_generator.sh auto'
-  environment:
-      PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
-  args:
-    chdir: '{{ work_dir }}'
-
-# TODO: Replace copy module using remote_src option (added in 2.0).
-- shell: 'cp {{ work_dir }}/{{ item }} {{ ricty_install_dir }}'
-  args:
-    creates: '{{ ricty_install_dir }}/{{ item }}'
-  with_items:
-    - '{{ target_fonts }}'
+- copy:
+      src: /usr/local/opt/ricty/share/fonts/Ricty*.ttf
+      dest: ~/Library/Fonts
 
 - homebrew: name=fontforge state=latest upgrade_all=yes
 
