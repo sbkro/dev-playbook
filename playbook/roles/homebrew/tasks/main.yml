@@ -12,10 +12,6 @@
 
 - homebrew: update_homebrew=yes upgrade_all=yes
 
-- homebrew_tap: tap=caskroom/cask state=present
-
-- homebrew: name=brew-cask
-
-- shell: brew cask doctor
-  environment:
-    PATH: '/usr/local/bin:{{ ansible_env.PATH }}'
+- homebrew_tap:
+    name: caskroom/cask
+    state: present
