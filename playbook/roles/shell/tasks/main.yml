@@ -3,11 +3,10 @@
   environment:
     HOMEBREW_CASK_OPTS: '{{ homebrew_cask_opts }}'
 
-- homebrew: name={{ item }} state=latest upgrade_all=yes
-  with_items:
-    - zsh
-    - tmux
-    - peco
+- homebrew:
+    name: ['zsh', 'tmux', 'peco']
+    state: latest
+    upgrade_all: yes
 
 - git: repo={{ item.url }} dest={{ item.dest }}
   with_items:
