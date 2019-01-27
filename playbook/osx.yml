@@ -2,9 +2,10 @@
 
 - hosts: osx
   roles:
-    - homebrew
-    - shell
-    - ricty
-    - python
-    - vim
-    - other_apps
+   - homebrew
+   - shell
+   - ricty
+   - python
+   - vim
+   - node
+   - other_apps

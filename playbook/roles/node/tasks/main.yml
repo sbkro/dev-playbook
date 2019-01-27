@@ -1,0 +1,19 @@
+---
+- homebrew:
+    name: ['nvm']
+    state: latest
+    upgrade_all: yes
+
+- file:
+    path: ~/.nvm
+    state: directory
+    mode: 0755
+
+- shell: source /usr/local/opt/nvm/nvm.sh; nvm install {{ node_version }}
+
+- shell: source /usr/local/opt/nvm/nvm.sh; nvm use {{ node_version }}
+
+- npm:
+    name: typescript
+    global: yes
+
