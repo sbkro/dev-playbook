@@ -1,7 +1,6 @@
 ---
 
-- homebrew: name={{ item }} state=latest upgrade_all=yes
-  with_items:
-    - git
-    - nkf
-    - tree
+- homebrew:
+    name: ['git', 'nkf', 'tree']
+    state: latest
+    upgrade_all: yes

@@ -32,8 +32,7 @@ $ ansible-playbook -i hosts_local osx.yml --connection=local -K
 ```
 
 # Environments
-* Host: OSX 10.11, Guest: OSX 10.11 (remote install)
-* Host: OSX 10.11 (local install)
+* Host: macOS 10.14 (local install)
 
 # TODO
 * Add infrastructure test. (serverspec)
