@@ -1,0 +1,28 @@
+---
+
+- name: Install macOS applications.
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+    install_options: 'appdir=/Applications'
+  with_items:
+    - alfred
+    - abore-photoshop-lightroom
+    - dropbox
+    - item2
+    - karabiner-elements
+    - onyx
+    - macvim
+    - visual-studio-code
+
+- name: Install quicklook plugins.
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - qlmarkdown
+
+- name: Install mas-cli.
+  homebrew:
+    name: mas
+    state: present
