@@ -7,20 +7,20 @@
     install_options: 'appdir=/Applications'
   with_items:
     - alfred
-    - abore-photoshop-lightroom
-    - dropbox
-    - item2
+    - github
+    - handbrake
+    - iterm2
     - karabiner-elements
-    - onyx
+    - macs-fan-control
     - macvim
-    - visual-studio-code
-
-- name: Install quicklook plugins.
-  homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  with_items:
+    - monolingual
     - qlmarkdown
+    - vagrant
+    - virtualbox
+    - visual-studio-code
+    - vlc
+    - xld
+    - zoomus
 
 - name: Install mas-cli.
   homebrew:
